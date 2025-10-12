@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_mysqldb import MySQL
-from config import Config
+from .config import Config
 from controller.customer_controller import create_customer_controller  
 from controller.customer_card_controller import create_customer_card_controller 
 from controller.product_controller import create_product_controller 
