@@ -1,4 +1,4 @@
-from dao.customer_card_dao import CustomerCardDAO
+from ..dao.customer_card_dao import CustomerCardDAO
 
 class CustomerCardService:
     def __init__(self, mysql):
