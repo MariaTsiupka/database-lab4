@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_mysqldb import MySQL
 from .config import Config
+from flasgger import Swagger
 from controller.customer_controller import create_customer_controller  
 from controller.customer_card_controller import create_customer_card_controller 
 from controller.product_controller import create_product_controller 
@@ -19,6 +20,7 @@ from controller.order_feedback_controller import create_order_feedback_controlle
 app = Flask(__name__)
 app.config.from_object(Config)
 mysql = MySQL(app)
+swagger = Swagger(app)
 
 customer_controller = create_customer_controller(mysql)
 app.register_blueprint(customer_controller)
