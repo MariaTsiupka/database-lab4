@@ -1,4 +1,4 @@
-from dao.city_dao import CityDAO
+from ..dao.city_dao import CityDAO
 
 class CityService:
     def __init__(self, mysql):
