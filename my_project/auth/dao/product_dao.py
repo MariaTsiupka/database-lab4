@@ -1,4 +1,4 @@
-from models.product import Product
+from ..models.product import Product
 
 class ProductDAO:
     def __init__(self, mysql):
