@@ -1,4 +1,4 @@
-from models.city import City
+from ..models.city import City
 
 class CityDAO:
     def __init__(self, mysql):
