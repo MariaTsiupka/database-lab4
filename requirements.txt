@@ -1,6 +1,5 @@
 Flask==2.3.3
 requests==2.32.1
-echo "# test redeploy" >> requirements.txt
 
 
 
