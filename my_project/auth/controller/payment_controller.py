@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from services.payment_service import PaymentService
+from ..services.payment_service import PaymentService
 import pymysql
 
 def create_payment_controller(mysql):
