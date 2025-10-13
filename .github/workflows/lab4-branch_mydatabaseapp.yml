@@ -28,7 +28,6 @@ jobs:
           python -m venv antenv
           source antenv/bin/activate
           pip install -r requirements.txt
-                
       # 4. Завантажуємо артефакт для деплою (виключаючи віртуальне середовище)
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v4
@@ -37,18 +36,16 @@ jobs:
           path: |
             .
             !antenv/
-      
   deploy:
     runs-on: ubuntu-latest
-    needs: build
-    
+    needs: build 
     steps:
       # 1. Завантажуємо артефакти з build job
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
           name: python-app
-      
+
       # 2. Деплой на Azure через Publish Profile
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
