@@ -1,4 +1,4 @@
-from models.company import Company
+from ..models.company import Company
 
 class CompanyDAO:
     def __init__(self, mysql):
