@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from services.delivery_service import DeliveryService
+from ..services.delivery_service import DeliveryService
 
 def create_delivery_controller(mysql):
     delivery_controller = Blueprint('delivery', __name__)
