@@ -1,4 +1,4 @@
-from models.order_item import OrderItem
+from ..models.order_item import OrderItem
 
 class OrderItemDAO:
     def __init__(self, mysql):
