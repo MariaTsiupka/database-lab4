@@ -1,4 +1,4 @@
-from dao.order_feedback_dao import OrderFeedbackDAO
+from ..dao.order_feedback_dao import OrderFeedbackDAO
 
 class OrderFeedbackService:
     def __init__(self, mysql):
