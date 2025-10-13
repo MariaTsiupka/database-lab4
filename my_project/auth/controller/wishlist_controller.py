@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from services.wishlist_service import WishlistService
+from ..services.wishlist_service import WishlistService
 
 def create_wishlist_controller(mysql):
     wishlist_controller = Blueprint('wishlist', __name__)
