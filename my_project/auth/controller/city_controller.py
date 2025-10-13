@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from services.city_service import CityService
+from ..services.city_service import CityService
 
 def create_city_controller(mysql):
     city_controller = Blueprint('city', __name__)
