@@ -1,4 +1,4 @@
-from models.wishlist import Wishlist
+from ..models.wishlist import Wishlist
 
 class WishlistDAO:
     def __init__(self, mysql):
