@@ -1,4 +1,4 @@
-from models.payment import Payment
+from ..models.payment import Payment
 
 class PaymentDAO:
     def __init__(self, mysql):
