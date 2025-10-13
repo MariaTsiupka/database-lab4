@@ -1,4 +1,4 @@
-from models.order import Order  # Імпортуємо клас Order
+from ..models.order import Order  # Імпортуємо клас Order
 from datetime import datetime
 
 class OrderDAO:
