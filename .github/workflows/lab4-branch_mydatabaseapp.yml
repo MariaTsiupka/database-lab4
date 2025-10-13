@@ -1,39 +1,35 @@
-# Docs: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-# Python + GitHub Actions + Azure: https://aka.ms/python-webapps-actions
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 
 name: Build and deploy Python app to Azure Web App - mydatabaseapp
 
 on:
   push:
     branches:
-      - lab4-branch
+      - lab4-branch # Цей робочий процес запускається при пуші в гілку lab4-branch
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read # Required for actions/checkout
 
     steps:
-      # Клон репозиторію
+      # 1. Клонуємо репозиторій
       - uses: actions/checkout@v4
 
-      # Налаштування Python
+      # 2. Налаштовуємо Python
       - name: Set up Python version
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
-      # Створення віртуального середовища та встановлення залежностей
+      # 3. Створюємо віртуальне середовище та встановлюємо залежності
       - name: Create virtual environment and install dependencies
         run: |
           python -m venv antenv
           source antenv/bin/activate
           pip install -r requirements.txt
-
-      # Завантаження артефактів для деплою
+                
+      # 4. Завантажуємо артефакт для деплою (виключаючи віртуальне середовище)
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v4
         with:
@@ -41,26 +37,24 @@ jobs:
           path: |
             .
             !antenv/
-
+      
   deploy:
     runs-on: ubuntu-latest
     needs: build
-    permissions:
-      contents: read
-
+    
     steps:
-      # Завантаження артефактів з build job
+      # 1. Завантажуємо артефакти з build job
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
           name: python-app
-
-      # Деплой на Azure через Publish Profile
+      
+      # 2. Деплой на Azure через Publish Profile
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'mydatabaseapp'
-          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          slot-name: 'Production'
+          # !!! ВИКОРИСТАННЯ СЕКРЕТА !!!
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }} 
           package: .
-
-          
