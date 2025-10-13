@@ -1,4 +1,4 @@
-from dao.payment_dao import PaymentDAO
+from ..dao.payment_dao import PaymentDAO
 
 class PaymentService:
     def __init__(self, mysql):
