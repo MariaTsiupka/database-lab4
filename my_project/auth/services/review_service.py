@@ -1,4 +1,4 @@
-from dao.review_dao import ReviewDAO
+from ..dao.review_dao import ReviewDAO
 
 class ReviewService:
     def __init__(self, mysql):
