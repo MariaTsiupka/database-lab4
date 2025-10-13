@@ -2,20 +2,20 @@ from flask import Flask
 from flask_mysqldb import MySQL
 from .config import Config
 from flasgger import Swagger
-from controller.customer_controller import create_customer_controller  
-from controller.customer_card_controller import create_customer_card_controller 
-from controller.product_controller import create_product_controller 
-from controller.company_controller import create_company_controller
-from controller.order_controller import create_order_controller
-from controller.order_item_controller import create_order_item_controller
-from controller.city_controller import create_city_controller
-from controller.delivery_controller import create_delivery_controller 
-from controller.payment_controller import create_payment_controller 
-from controller.review_controller import create_review_controller 
-from controller.wishlist_controller import create_wishlist_controller 
-from controller.product_type_controller import create_product_type_controller 
-from controller.product_attribute_controller import create_product_attribute_controller 
-from controller.order_feedback_controller import create_order_feedback_controller
+from .controller.customer_controller import create_customer_controller  
+from .controller.customer_card_controller import create_customer_card_controller 
+from .controller.product_controller import create_product_controller 
+from .controller.company_controller import create_company_controller
+from .controller.order_controller import create_order_controller
+from .controller.order_item_controller import create_order_item_controller
+from .controller.city_controller import create_city_controller
+from .controller.delivery_controller import create_delivery_controller 
+from .controller.payment_controller import create_payment_controller 
+from .controller.review_controller import create_review_controller 
+from .controller.wishlist_controller import create_wishlist_controller 
+from .controller.product_type_controller import create_product_type_controller 
+from .controller.product_attribute_controller import create_product_attribute_controller 
+from .controller.order_feedback_controller import create_order_feedback_controller
 
 app = Flask(__name__)
 app.config.from_object(Config)
