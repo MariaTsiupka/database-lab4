@@ -1,4 +1,4 @@
-from models.customer import Customer
+from ..models.customer import Customer
 
 class CustomerDAO:
     def __init__(self, mysql):
