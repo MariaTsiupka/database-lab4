@@ -1,4 +1,4 @@
-from dao.product_type_dao import ProductTypeDAO
+from ..dao.product_type_dao import ProductTypeDAO
 
 class ProductTypeService:
     def __init__(self, mysql):
