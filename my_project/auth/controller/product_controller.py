@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from services.product_service import ProductService
+from ..services.product_service import ProductService
 
 def create_product_controller(mysql):
     product_controller = Blueprint('products', __name__)
