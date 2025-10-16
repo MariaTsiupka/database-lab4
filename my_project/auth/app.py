@@ -2,6 +2,8 @@ from flask import Flask
 from flask_mysqldb import MySQL
 from .config import Config
 from flasgger import Swagger
+from flask_jwt_extended import JWTManager
+from .controller.auth_controller import auth_bp
 from .controller.customer_controller import create_customer_controller  
 from .controller.customer_card_controller import create_customer_card_controller 
 from .controller.product_controller import create_product_controller 
@@ -21,6 +23,12 @@ app = Flask(__name__)
 app.config.from_object(Config)
 mysql = MySQL(app)
 swagger = Swagger(app)
+# JWT налаштування
+app.config['JWT_SECRET_KEY'] = 'super-secret-key'
+jwt = JWTManager(app)
+
+# Реєструємо auth_bp
+app.register_blueprint(auth_bp)
 
 customer_controller = create_customer_controller(mysql)
 app.register_blueprint(customer_controller)
