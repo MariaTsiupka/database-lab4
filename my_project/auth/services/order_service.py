@@ -1,4 +1,4 @@
-from ..dao.order_dao import OrderDAO
+from my_project.auth.dao.order_dao import OrderDAO
 
 class OrderService:
     def __init__(self, mysql):
