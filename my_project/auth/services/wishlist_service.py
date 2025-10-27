@@ -1,4 +1,4 @@
-from ..dao.wishlist_dao import WishlistDAO
+from my_project.auth.dao.wishlist_dao import WishlistDAO
 
 class WishlistService:
     def __init__(self, mysql):
