@@ -65,6 +65,10 @@ app.register_blueprint(product_attribute_controller)
 order_feedback_controller = create_order_feedback_controller(mysql)
 app.register_blueprint(order_feedback_controller)
 
-
+@app.route('/')
+def index():
+    return "API працює!" 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
+
+
