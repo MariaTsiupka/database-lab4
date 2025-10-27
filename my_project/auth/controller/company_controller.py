@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from ..services.company_service import CompanyService
+from my_project.auth.services.company_service import CompanyService
 
 def create_company_controller(mysql):
     company_controller = Blueprint('company', __name__)
