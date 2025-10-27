@@ -1,4 +1,4 @@
-from ..dao.company_dao import CompanyDAO
+from my_project.auth.dao.company_dao import CompanyDAO
 
 class CompanyService:
     def __init__(self, mysql):
