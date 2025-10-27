@@ -1,4 +1,4 @@
-from ..models.review import Review
+from my_project.auth.models.review import Review
 
 class ReviewDAO:
     def __init__(self, mysql):
