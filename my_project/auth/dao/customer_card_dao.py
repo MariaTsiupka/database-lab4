@@ -1,4 +1,4 @@
-from ..models.customer_card import CustomerCard
+from my_project.auth.models.customer_card import CustomerCard
 
 
 class CustomerCardDAO:
