@@ -1,4 +1,5 @@
 from flask import Blueprint, request, jsonify
+from flasgger import swag_from
 from my_project.auth.services.city_service import CityService
 
 def create_city_controller(mysql):
@@ -6,54 +7,49 @@ def create_city_controller(mysql):
     service = CityService(mysql)
 
     @city_controller.route('/cities', methods=['GET'])
+    @swag_from({
+        'tags': ['Cities'],
+        'summary': 'Отримати всі міста',
+        'responses': {
+            200: {
+                'description': 'Список міст',
+                'content': {
+                    'application/json': {
+                        'example': [
+                            {"id": 1, "city_name": "Kyiv"},
+                            {"id": 2, "city_name": "Lviv"}
+                        ]
+                    }
+                }
+            }
+        }
+    })
     def get_cities():
-        """
-        Get all cities
-        ---
-        responses:
-          200:
-            description: List of all cities
-            content:
-              application/json:
-                schema:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      id:
-                        type: integer
-                      city_name:
-                        type: string
-        """
         cities = service.get_cities()
         return jsonify([city.to_dict() for city in cities])
 
     @city_controller.route('/cities', methods=['POST'])
+    @swag_from({
+        'tags': ['Cities'],
+        'summary': 'Створити нове місто',
+        'requestBody': {
+            'required': True,
+            'content': {
+                'application/json': {
+                    'example': {"city_name": "Odessa"}
+                }
+            }
+        },
+        'responses': {
+            201: {'description': 'Місто створено'},
+            400: {'description': 'Некоректні дані'},
+            500: {'description': 'Помилка сервера'}
+        }
+    })
     def create_city():
-        """
-        Create a new city
-        ---
-        requestBody:
-          required: true
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  city_name:
-                    type: string
-        responses:
-          201:
-            description: City created successfully
-          400:
-            description: Invalid data provided
-          500:
-            description: Server error
-        """
         data = request.json
         if not data or 'city_name' not in data:
             return jsonify({"error": "Invalid data"}), 400
-
         try:
             service.add_city(data)
             return jsonify({"message": "City created"}), 201
@@ -61,37 +57,30 @@ def create_city_controller(mysql):
             return jsonify({"error": str(e)}), 500
 
     @city_controller.route('/cities/<int:city_id>', methods=['PUT'])
+    @swag_from({
+        'tags': ['Cities'],
+        'summary': 'Оновити дані міста',
+        'parameters': [
+            {'name': 'city_id', 'in': 'path', 'required': True, 'schema': {'type': 'integer'}}
+        ],
+        'requestBody': {
+            'required': True,
+            'content': {
+                'application/json': {
+                    'example': {"city_name": "Dnipro"}
+                }
+            }
+        },
+        'responses': {
+            200: {'description': 'Місто оновлено'},
+            400: {'description': 'Некоректні дані'},
+            500: {'description': 'Помилка сервера'}
+        }
+    })
     def update_city(city_id):
-        """
-        Update existing city
-        ---
-        parameters:
-          - name: city_id
-            in: path
-            required: true
-            schema:
-              type: integer
-        requestBody:
-          required: true
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  city_name:
-                    type: string
-        responses:
-          200:
-            description: City updated successfully
-          400:
-            description: Invalid data
-          500:
-            description: Server error
-        """
         data = request.json
         if not data or 'city_name' not in data:
             return jsonify({"error": "Invalid data"}), 400
-
         try:
             service.modify_city(city_id, data)
             return jsonify({"message": "City updated"})
@@ -99,22 +88,18 @@ def create_city_controller(mysql):
             return jsonify({"error": str(e)}), 500
 
     @city_controller.route('/cities/<int:city_id>', methods=['DELETE'])
+    @swag_from({
+        'tags': ['Cities'],
+        'summary': 'Видалити місто',
+        'parameters': [
+            {'name': 'city_id', 'in': 'path', 'required': True, 'schema': {'type': 'integer'}}
+        ],
+        'responses': {
+            200: {'description': 'Місто видалено'},
+            500: {'description': 'Помилка сервера'}
+        }
+    })
     def delete_city(city_id):
-        """
-        Delete a city
-        ---
-        parameters:
-          - name: city_id
-            in: path
-            required: true
-            schema:
-              type: integer
-        responses:
-          200:
-            description: City deleted successfully
-          500:
-            description: Server error
-        """
         try:
             service.remove_city(city_id)
             return jsonify({"message": "City deleted"})
@@ -122,4 +107,3 @@ def create_city_controller(mysql):
             return jsonify({"error": str(e)}), 500
 
     return city_controller
-
