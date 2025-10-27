@@ -1,4 +1,4 @@
-from ..dao.product_attribute_dao import ProductAttributeDAO
+from my_project.auth.dao.product_attribute_dao import ProductAttributeDAO
 
 class ProductAttributeService:
     def __init__(self, mysql):
