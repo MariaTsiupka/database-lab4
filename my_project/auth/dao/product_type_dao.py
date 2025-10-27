@@ -1,4 +1,4 @@
-from ..models.product_type import ProductType
+from my_project.auth.models.product_type import ProductType
 class ProductTypeDAO:
     def __init__(self, mysql):
         self.mysql = mysql
