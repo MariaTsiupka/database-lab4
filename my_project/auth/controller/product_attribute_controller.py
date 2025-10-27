@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from ..services.product_attribute_service import ProductAttributeService
+from my_project.auth.services.product_attribute_service import ProductAttributeService
 
 def create_product_attribute_controller(mysql):
     product_attribute_controller = Blueprint('product_attribute', __name__)
