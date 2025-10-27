@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from flasgger import swag_from
-from ..services.customer_card_service import CustomerCardService
+from my_project.auth.services.customer_card_service import CustomerCardService
 
 def create_customer_card_controller(mysql):
     customer_card_controller = Blueprint('customer_card', __name__)
