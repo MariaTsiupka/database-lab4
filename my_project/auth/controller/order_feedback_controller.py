@@ -1,6 +1,6 @@
 # controllers/order_feedback_controller.py
 from flask import Blueprint, request, jsonify
-from ..services.order_feedback_service import OrderFeedbackService
+from my_project.auth.services.order_feedback_service import OrderFeedbackService
 
 def create_order_feedback_controller(mysql):
     feedback_controller = Blueprint('order_feedback', __name__)
