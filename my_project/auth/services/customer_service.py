@@ -1,4 +1,4 @@
-from ..dao.customer_dao import CustomerDAO
+from my_project.auth.dao.customer_dao import CustomerDAO
 
 class CustomerService:
     def __init__(self, mysql):
