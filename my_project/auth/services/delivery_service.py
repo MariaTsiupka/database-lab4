@@ -1,4 +1,4 @@
-from ..dao.delivery_dao import DeliveryDAO
+from my_project.auth.dao.delivery_dao import DeliveryDAO
 
 class DeliveryService:
     def __init__(self, mysql):
