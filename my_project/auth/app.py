@@ -2,6 +2,7 @@ from flask import Flask
 from flask_mysqldb import MySQL
 from my_project.auth.config import Config
 from flasgger import Swagger
+
 from my_project.auth.controller.customer_controller import create_customer_controller  
 from my_project.auth.controller.customer_card_controller import create_customer_card_controller 
 from my_project.auth.controller.product_controller import create_product_controller 
@@ -21,6 +22,22 @@ app = Flask(__name__)
 app.config.from_object(Config)
 mysql = MySQL(app)
 swagger = Swagger(app)
+
+# реєстрація тільки потрібних Blueprints
+app.register_blueprint(create_customer_controller(mysql))
+app.register_blueprint(create_customer_card_controller(mysql))
+app.register_blueprint(create_product_controller(mysql))
+app.register_blueprint(create_company_controller(mysql))
+app.register_blueprint(create_order_controller(mysql))
+app.register_blueprint(create_order_item_controller(mysql))
+app.register_blueprint(create_city_controller(mysql))
+app.register_blueprint(create_delivery_controller(mysql))
+app.register_blueprint(create_payment_controller(mysql))
+app.register_blueprint(create_review_controller(mysql))
+app.register_blueprint(create_wishlist_controller(mysql))
+app.register_blueprint(create_product_type_controller(mysql))
+app.register_blueprint(create_product_attribute_controller(mysql))
+app.register_blueprint(create_order_feedback_controller(mysql))
 
 @app.route('/')
 def index():
