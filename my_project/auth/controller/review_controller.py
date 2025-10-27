@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from ..services.review_service import ReviewService
+from my_project.auth.services.review_service import ReviewService
 
 def create_review_controller(mysql):
     review_controller = Blueprint('review', __name__)
