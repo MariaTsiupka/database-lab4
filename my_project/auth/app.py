@@ -39,6 +39,10 @@ app.register_blueprint(create_product_type_controller(mysql))
 app.register_blueprint(create_product_attribute_controller(mysql))
 app.register_blueprint(create_order_feedback_controller(mysql))
 
+# Додано для перевірки всіх маршрутів
+print("Доступні маршрути:")
+print(app.url_map)
+
 @app.route('/')
 def index():
     return "API працює!"
